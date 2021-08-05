@@ -1,0 +1,125 @@
+﻿ 
+@model List<PortalGrup.Models.CustomerListModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="content d-flex flex-column">
+        <div class="col-md-6 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Add Customer</h5>
+                </div>
+                <div class="card-body">
+                    <form class="w-500" asp-action="index" asp-controller="home" method="post">
+
+                        <div class="mb-3">
+                            <label for="FirstName" class="form-label">FirstName</label>
+                            <input type="text" id="FirstName" name="FirstName" class="form-control">
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">LastName</label>
+                            <input type="text" id="LastName" name="LastName" class="form-control">
+                            
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="IdentityNumber" class="form-label">Identity Number</label>
+                            <input type="number" id="IdentityNumber" name="IdentityNumber" class="form-control">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="DateOfBirth" class="form-label">Date</label>
+                            <input type="text" class="form-control" name="DateOfBirth" id="DateOfBirth">
+                        </div>
+                        <div class="text-center">
+                            <div class="form-check form-check-inline">
+                                <input checked="checked" class="form-check-input" type="radio" name="CompanyId" id="sturbucks" value="1">
+                                <label class="form-check-label" for="sturbucks">Starbucks</label>
+                            </div>
+                            <div class="form-check form-check-inline ">
+                                <input class="form-check-input" type="radio" name="CompanyId" id="portal" value="2">
+                                <label class="form-check-label" for="portal">Portal Coffee</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" (click)="add()" class="btn btn-primary w-100">Save</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="p-5">
+            <table id="customertable" class="table p-5">
+                <thead>
+                    <tr>
+                        <th>Identity NUm.</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Year</th>
+                        <th>Company</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdentityNumber</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.DateOfBirth.Year</td>
+                            <td>
+                                @if (item.Company == 1)
+                                {
+                                    @: Starbucks
+                                }
+                                else
+                                {
+                                    @: PortalCoffee
+                                }
+                            </td>
+                            
+                            <td> @Html.ActionLink("Update", "UpdatePerson", new { customerId = item.Id }, new { @class = "btn btn-primary" })</td>
+                            <td> @Html.ActionLink("Delete", "DeletePerson", new { customerId = item.Id }, new { @class = "btn btn-danger" })</td>
+                           
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+    <script>
+        $("#DateOfBirth").datepicker({
+            format: "yyyy-mm-dd"
+        });
+
+    </script>
+   
+
+</body>
+
+</html>

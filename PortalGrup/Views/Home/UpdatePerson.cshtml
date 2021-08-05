@@ -1,0 +1,74 @@
+﻿
+@model CustomerModel
+
+@{
+    Layout = null;
+}
+
+
+
+<head>
+    <meta charset="utf-8" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="content d-flex flex-column">
+        <div class="col-md-6 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Müşteri Ekle</h5>
+                </div>
+                <div class="card-body">
+                    <form class="w-500" asp-action="UpdatePerson" asp-controller="home" method="post">
+
+                        <input type="hidden" name="Id" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label for="FirstName" class="form-label">FirstName</label>
+                            <input type="text" id="FirstName" name="FirstName" class="form-control" value="@Model.FirstName">
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">LastName</label>
+                            <input type="text" id="LastName" name="LastName" class="form-control" value="@Model.LastName">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="IdentityNumber" class="form-label">Identity Number</label>
+                            <input type="number" id="IdentityNumber" name="IdentityNumber" class="form-control" value="@Model.IdentityNumber">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="DateOfBirth" class="form-label">Tarih</label>
+                            <input type="text" class="form-control" name="DateOfBirth" id="DateOfBirth" value="@Model.DateOfBirth">
+                        </div>
+
+                        <div class="text-center">
+                            <div class="form-check form-check-inline">
+                                <input checked="checked" class="form-check-input" type="radio" name="Company" id="sturbucks" value="1">
+                                <label class="form-check-label" for="sturbucks">Starbucks</label>
+                            </div>
+                            <div class="form-check form-check-inline ">
+                                <input class="form-check-input" type="radio" name="Company" id="portal" value="2">
+                                <label class="form-check-label" for="portal">Portal Kahve</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" (click)="add()" class="btn btn-primary w-100">Update</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
